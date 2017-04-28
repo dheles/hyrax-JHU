@@ -1,0 +1,8 @@
+development:
+  adapter:  postgresql
+  encoding: unicode
+  pool:     5
+  timeout:  5000
+  database: sufia
+  username: sufia
+  password: bfdnks795re34tnjreksgrea89

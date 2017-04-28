@@ -1,0 +1,19 @@
+# TODO: consider benefit of supporting multiple urls, ports, &/or cores
+# the source of this file is:
+# [sufia/hyrax-based rails app]/vendor/bundle/ruby/2.3.0/gems/active-fedora-11.1.6/config.solr.yml
+# it is not yet clear to me whether we will ever use the full_text urls. keeping them for now, JIC
+development:
+  default:
+    url: http://127.0.0.1:8983/solr/hydra-development
+  full_text:
+    url: http://127.0.0.1:8983/solr/hydra-development
+test:
+  default:
+    url: http://127.0.0.1:8983/solr/hydra-development
+  full_text:
+    url: http://127.0.0.1:8983/solr/hydra-development
+production:
+  default:
+    url: http://127.0.0.1:8983/solr/hydra-development
+  full_text:
+    url: http://127.0.0.1:8983/solr/hydra-development
