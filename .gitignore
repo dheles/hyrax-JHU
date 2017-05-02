@@ -15,7 +15,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
 # BEGIN additional lines
 /vendor/bundle
-/config/secrets.yml
 # END additional lines
