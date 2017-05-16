@@ -1,3 +1,4 @@
+
 # PostgreSQL. Versions 9.1 and up are supported.
 #
 # Install the pg driver:
@@ -20,18 +21,18 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: sufia
-  password: <%= ENV['SUFIA_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
   database: sufia_development
+  username: sufia
+  password: <%= ENV['SUFIA_DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username:
+  #username: sufia
 
   # The password associated with the postgres role (username).
   #password:
@@ -83,3 +84,5 @@ test:
 production:
   <<: *default
   database: sufia_production
+  username: sufia
+  password: <%= ENV['SUFIA_DATABASE_PASSWORD'] %>
