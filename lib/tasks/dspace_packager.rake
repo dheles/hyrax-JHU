@@ -29,7 +29,7 @@ require 'zip'
   "dc.language.iso" => "language",
   "dc.subject" => "subject",
   "dc.type" => "resource_type",
-  "dc.relation.ispartofseries" => "part_of"
+  "dc.relation.ispartofseries" => "is_part_of"
 }
 
 @singulars = {
@@ -207,16 +207,19 @@ def process_mets (mets_file,parentColl = nil)
           newFileName = newFile.attr('xlink:href')
           puts newFileName + " -> " + originalFileName
           File.rename(@bitstream_dir + "/" + newFileName, @bitstream_dir + "/" + originalFileName)
-          # adding options to avoid error (on some files):
+          # tried adding options to avoid error (on some files):
           # Encoding::UndefinedConversionError: "\xCC" from ASCII-8BIT to UTF-8
           # http://ruby-doc.org/core-2.3.3/IO.html#method-c-new-label-IO+Open+Mode
           # tried:
           # 'b' not valid
           # 'rb' doesn't work
+          # 'ab' doesn't work
           # 'wb' works by truncating the file to zero-length
+          # 'w+b' works by truncating the file to zero-length
           # 'r+b' doesn't work
+          # 'a+b' doesn't work
           puts "modified mode test: " + originalFileName
-          file = File.open(@bitstream_dir + "/" + originalFileName, 'r+b')
+          file = File.open(@bitstream_dir + "/" + originalFileName) #, 'w+b')
           sufiaFile = Hyrax::UploadedFile.create(file: file)
           sufiaFile.save
           uploadedFiles.push(sufiaFile)
