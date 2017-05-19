@@ -43,8 +43,8 @@ class Work < ActiveFedora::Base
       index.as :stored_searchable, :facetable
   end
 
-  property :part_of, predicate: ::RDF::Vocab::DC.isPartOf do |index|
-      index.as :stored_searchable, :facetable
+  property :is_part_of, predicate: ::RDF::Vocab::DC.isPartOf do |index|
+    index.as :stored_searchable, :facetable
   end
 
   property :date_accessioned, predicate: ::RDF::Vocab::DC.date, multiple: false
