@@ -41,6 +41,10 @@ require 'zip'
 # This is a variable to use during XML parse testing to avoid submitting new items
 @debugging = FALSE
 
+# vars for testing
+@test_user = 'dheles@jhu.edu'
+@test_adminset = 'cc08hf60z'
+
 namespace :packager do
 
   task :aip, [:file, :user_id] =>  [:environment] do |t, args|
@@ -54,6 +58,7 @@ namespace :packager do
     @source_file = args[:file] or raise "No source input file provided."
     #@current_user = User.find_by_user_key(args[:user_id])
 
+    @testDepositor = User.find_by_user_key(@test_user)
     @defaultDepositor = User.find_by_user_key(args[:user_id]) # THIS MAY BE UNNECESSARY
 
     puts "Building Import Package from AIP Export file: " + @source_file
@@ -129,7 +134,11 @@ def process_mets (mets_file,parentColl = nil)
      when "dc.creator"
        if element.inner_html.match(/@/)
          # puts "Looking for User: " + element.inner_html
-         depositor = getUser(element.inner_html) unless @debugging
+
+         # deposit all items as the test user
+         depositor = @testDepositor
+        #  depositor = getUser(element.inner_html) unless @debugging
+
          # depositor = @defaultDepositor
          # puts depositor
        end
@@ -289,6 +298,14 @@ def createItem (params, depositor, parent = nil)
   else
     params["visibility"] = "open"
   end
+
+
+
+  # add item to default admin set
+  # params["admin_set_id"] = AdminSet::DEFAULT_ID
+  # add item to the test admin set
+  params["admin_set_id"] = @test_adminset
+
   item.update(params)
   item.apply_depositor_metadata(depositor.user_key)
   item.save
