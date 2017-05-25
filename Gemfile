@@ -64,3 +64,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
+
+# Add dependencies for hydra dspace packager
+gem 'rubyzip'
+gem 'colorize'
