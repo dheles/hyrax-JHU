@@ -8,7 +8,8 @@ Bundler.require(*Rails.groups)
 
 module HyraxJhu
   class Application < Rails::Application
-    
+    config.active_job.queue_adapter = :inline
+
 
       # The compile method (default in tinymce-rails 4.5.2) doesn't work when also
       # using tinymce-rails-imageupload, so revert to the :copy method
