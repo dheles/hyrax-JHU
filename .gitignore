@@ -17,5 +17,15 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore the contents of the import folder
+/import/*
+!/import/.keep
+!/import/complete/
+/import/complete/*
+!/import/complete/.keep
+
 # Ignore Byebug command history file.
 .byebug_history
+# BEGIN additional lines
+/vendor/bundle
+# END additional lines
