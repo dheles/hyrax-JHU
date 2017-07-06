@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516192835) do
+ActiveRecord::Schema.define(version: 20170705170967) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20170516192835) do
     t.datetime "expires"
     t.index ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
     t.index ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type", using: :btree
+    t.index ["notified_object_type", "notified_object_id"], name: "mailboxer_notifications_notified_object", using: :btree
     t.index ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
     t.index ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
   end
